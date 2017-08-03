@@ -53,6 +53,7 @@
         border-radius: 36px;
       }
       .btn-begin {
+        padding: 0 10px;
         color: white;
         background-color: #6190E8;
       }
@@ -120,7 +121,7 @@
          </div>
       </div>
       <p class="demo-title">
-        <span>演示</span>
+        <span class="demo">演示</span>
       </p>
       <div id="gitalk-container"></div>
     </div>
@@ -134,9 +135,21 @@
         admin: ['booxood', 'mamboer'],
         id: 'Demo',
         distractionFreeMode: true
-      })
+      });
+      gitalk.render('gitalk-container');
 
-      gitalk.render('gitalk-container')
+      var language = navigator.language || navigator.userLanguage;
+      var intro = document.getElementsByClassName('hero-intro')[0];
+      var beginBtn = document.getElementsByClassName('btn-begin')[0];
+      var demo = document.getElementsByClassName('demo')[0];
+      if (language === 'zh-TW') {
+        intro.innerText = '一個基於 Github Issue 和 Preact 開發的評論插件';
+        beginBtn.innerText = '開始使用';
+      } else if (!~language.indexOf('zh')) {
+        intro.innerText = 'A comment plugin base on Github Issue and Preact';
+        beginBtn.innerText = 'GET STARTED';
+        demo.innerText = 'Demo';
+      }
     </script>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
